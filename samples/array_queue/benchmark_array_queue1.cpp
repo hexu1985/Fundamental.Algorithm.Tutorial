@@ -1,3 +1,6 @@
+/** \example array_queue/benchmark_array_queue1.cpp
+ * This is an example of how to use the std::queue class.
+ */
 #include <assert.h>
 #include <iostream>
 #include <queue>

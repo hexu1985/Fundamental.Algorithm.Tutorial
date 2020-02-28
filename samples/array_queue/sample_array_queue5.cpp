@@ -1,3 +1,6 @@
+/** \example array_queue/sample_array_queue5.cpp
+ * This is an example of how to use the ArrayQueue class.
+ */
 // ArrayQueue::size
 #include <iostream>         // std::cout
 #include "ArrayQueue.hpp"   // ArrayQueue

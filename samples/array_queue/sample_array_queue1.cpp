@@ -1,3 +1,6 @@
+/** \example array_queue/sample_array_queue1.cpp
+ * This is an example of how to use the ArrayQueue class.
+ */
 #include <assert.h>
 #include <iostream>
 #include "ArrayQueue.hpp"

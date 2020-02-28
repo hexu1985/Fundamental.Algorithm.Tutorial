@@ -1,3 +1,6 @@
+/** \example array_queue/benchmark_array_queue3.cpp
+ * This is an example of how to use the std::queue class.
+ */
 // queue::push/pop
 #include <iostream>       // std::cin, std::cout
 #include <queue>          // std::queue
