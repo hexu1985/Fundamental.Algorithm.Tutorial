@@ -1,15 +1,15 @@
-/** \example array_queue/sample_array_queue2.cpp
- * This is an example of how to use the ArrayQueue class.
+/** \example queue/sample_queue2.cpp
+ * This is an example of how to use the Queue class.
  */
-// ArrayQueue::empty
+// Queue::empty
 #include <iostream>         // std::cout
-#include "ArrayQueue.hpp"   // ArrayQueue
+#include "Queue.hpp"   // Queue
 
 using namespace mini_algo;
 
 int main ()
 {
-  ArrayQueue<int> myqueue;
+  Queue<int> myqueue;
   int sum (0);
 
   for (int i=1;i<=10;i++) myqueue.push(i);

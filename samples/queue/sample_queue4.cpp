@@ -1,15 +1,15 @@
-/** \example array_queue/sample_array_queue4.cpp
- * This is an example of how to use the ArrayQueue class.
+/** \example queue/sample_queue4.cpp
+ * This is an example of how to use the Queue class.
  */
-// ArrayQueue::front
+// Queue::front
 #include <iostream>         // std::cout
-#include "ArrayQueue.hpp"   // ArrayQueue
+#include "Queue.hpp"   // Queue
 
 using namespace mini_algo;
 
 int main ()
 {
-  ArrayQueue<int> myqueue;
+  Queue<int> myqueue;
 
   myqueue.push(77);
   myqueue.push(16);

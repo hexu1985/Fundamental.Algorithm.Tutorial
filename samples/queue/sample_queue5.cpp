@@ -1,15 +1,15 @@
-/** \example array_queue/benchmark_array_queue5.cpp
- * This is an example of how to use the std::queue class.
+/** \example queue/sample_queue5.cpp
+ * This is an example of how to use the Queue class.
  */
-// queue::size
-#include <iostream> // std::cout
-#include <queue>    // std::queue
+// Queue::size
+#include <iostream>         // std::cout
+#include "Queue.hpp"   // Queue
 
-using namespace std;
+using namespace mini_algo;
 
 int main ()
 {
-  queue<int> myints;
+  Queue<int> myints;
   std::cout << "0. size: " << myints.size() << '\n';
 
   for (int i=0; i<5; i++) myints.push(i);

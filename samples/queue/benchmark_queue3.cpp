@@ -1,4 +1,4 @@
-/** \example array_queue/benchmark_array_queue3.cpp
+/** \example queue/benchmark_queue3.cpp
  * This is an example of how to use the std::queue class.
  */
 // queue::push/pop

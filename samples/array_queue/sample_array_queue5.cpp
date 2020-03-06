@@ -9,7 +9,7 @@ using namespace mini_algo;
 
 int main ()
 {
-  ArrayQueue<int> myints(20);
+  ArrayQueue<int> myints;
   std::cout << "0. size: " << myints.size() << '\n';
 
   for (int i=0; i<5; i++) myints.push(i);

@@ -1,12 +1,12 @@
 /**
- * @file ArrayQueue.hpp
+ * @file Queue.hpp
  * @brief 数组实现的循环队列
  * @author hexu_1985@sina.com
  * @version 1.0
  * @date 2020-02-28
  */
-#ifndef MINI_UTILS_ARRAY_QUEUE_INC
-#define MINI_UTILS_ARRAY_QUEUE_INC
+#ifndef MINI_UTILS_QUEUE_INC
+#define MINI_UTILS_QUEUE_INC
 
 namespace mini_algo {
 
@@ -14,22 +14,21 @@ namespace mini_algo {
  * @brief 数组实现的队列
  *
  * @tparam Item 队列元素类型
- * @tparam maxN 队列最多容纳元素个数
  */
-template <class Item, size_t maxN=128>
-class ArrayQueue {
+template <class Item>
+class Queue {
 // 索引:   [0][1][2]...[7][8][9]...[N-1][N]
 // 数组:   [x][x][x]...[x][x][x]...[xxx]
 //             ^head          ^tail
 private:
-    Item A[maxN+1];  // 数组空间, A[0], ..., A[N-1]
-    int N;           // 数组容量
-    int head;        // 队首元素的下标, head的取值范围[1, N]
-    int tail;        // 队尾元素的下一个位置的下标, tail的取值范围[0, N-1]
+    Item *A;    // 数组空间, A[0], ..., A[N-1]
+    int N;      // 数组容量
+    int head;   // 队首元素的下标, head的取值范围[1, N]
+    int tail;   // 队尾元素的下一个位置的下标, tail的取值范围[0, N-1]
 
 private:
-    ArrayQueue(const ArrayQueue &) = delete;
-    ArrayQueue &operator =(const ArrayQueue &) = delete;
+    Queue(const Queue &) = delete;
+    Queue &operator =(const Queue &) = delete;
 
 public:
     /**
@@ -37,8 +36,9 @@ public:
      *
      * @param maxN 队列最多能容纳元素个数
      */
-    ArrayQueue()
+    Queue(int maxN=128)
     { 
+        A = new Item[maxN+1];
         N = maxN+1; 
         head = N; 
         tail = 0; 
@@ -47,8 +47,9 @@ public:
     /**
      * @brief 释放动态内存
      */
-    ~ArrayQueue()
+    ~Queue()
     {
+        delete [] A;
     }
 
     /**
