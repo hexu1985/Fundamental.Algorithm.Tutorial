@@ -1,12 +1,15 @@
 /**
  * @file ArrayQueue.hpp
- * @brief 数组实现的循环队列
+ * @brief 数组实现的队列
  * @author hexu_1985@sina.com
  * @version 1.0
  * @date 2020-02-28
+ *
+ * @see 算法I~IV(C++实现): 章节4.6
+ *
  */
-#ifndef MINI_UTILS_ARRAY_QUEUE_INC
-#define MINI_UTILS_ARRAY_QUEUE_INC
+#ifndef MINI_ALGO_ARRAY_QUEUE_INC
+#define MINI_ALGO_ARRAY_QUEUE_INC
 
 namespace mini_algo {
 
@@ -45,11 +48,9 @@ public:
     }
 
     /**
-     * @brief 释放动态内存
+     * @brief 空析构函数
      */
-    ~ArrayQueue()
-    {
-    }
+    ~ArrayQueue() {}
 
     /**
      * @brief 获取队列中元素个数

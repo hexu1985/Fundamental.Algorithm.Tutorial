@@ -1,12 +1,15 @@
 /**
  * @file Queue.hpp
- * @brief 数组实现的循环队列
+ * @brief 数组实现的队列
  * @author hexu_1985@sina.com
  * @version 1.0
  * @date 2020-02-28
+ *
+ * @see 算法I~IV(C++实现): 章节4.6
+ *
  */
-#ifndef MINI_UTILS_QUEUE_INC
-#define MINI_UTILS_QUEUE_INC
+#ifndef MINI_ALGO_QUEUE_INC
+#define MINI_ALGO_QUEUE_INC
 
 namespace mini_algo {
 
