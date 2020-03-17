@@ -28,7 +28,7 @@ int main () {
     std::cout << ' ' << item;
   std::cout << '\n';
 
-  assert(std::is_sorted(myvector, myvector+array_size(my_vector)));
+  assert(std::is_sorted(myvector, myvector+array_size(myvector)));
 
   return 0;
 }
