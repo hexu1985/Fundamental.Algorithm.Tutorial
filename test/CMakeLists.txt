@@ -3,5 +3,5 @@
 find_package(GTest REQUIRED)
 
 aux_source_directory(. SRC_FILE_LIST)
-add_executable(sample ${SRC_FILE_LIST})
-target_link_libraries(sample GTest::gtest)
+add_executable(mini_algo_test ${SRC_FILE_LIST})
+target_link_libraries(mini_algo_test GTest::gtest)

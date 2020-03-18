@@ -21,4 +21,15 @@ endif()
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include")
 
 add_subdirectory(samples)
-#add_subdirectory(test)
+
+option(ENABLE_UNIT_TESTS "Enable unit tests" ON)
+message(STATUS "Enable testing: ${ENABLE_UNIT_TESTS}")
+
+if (ENABLE_UNIT_TESTS)
+    add_subdirectory(test)
+    enable_testing()
+    add_test(
+        NAME google_test
+        COMMAND $<TARGET_FILE:mini_algo_test>
+        )
+endif()
