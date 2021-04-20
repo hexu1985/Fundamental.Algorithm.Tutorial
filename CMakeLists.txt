@@ -22,7 +22,7 @@ include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include")
 
 add_subdirectory(samples)
 
-option(ENABLE_UNIT_TESTS "Enable unit tests" ON)
+option(ENABLE_UNIT_TESTS "Enable unit tests" OFF)
 message(STATUS "Enable testing: ${ENABLE_UNIT_TESTS}")
 
 if (ENABLE_UNIT_TESTS)
