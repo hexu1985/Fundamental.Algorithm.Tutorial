@@ -9,7 +9,7 @@ using namespace mini_algo;
 
 int main ()
 {
-  ArrayQueue<int> myqueue;
+  ArrayQueue<int, 100> myqueue;
   int sum (0);
 
   for (int i=1;i<=10;i++) myqueue.push(i);

@@ -19,7 +19,7 @@ namespace mini_algo {
  * @tparam Item 队列元素类型
  * @tparam maxN 队列最多容纳元素个数
  */
-template <class Item, size_t maxN=128>
+template <class Item, size_t maxN>
 class ArrayQueue {
 // 索引:   [0][1][2]...[7][8][9]...[N-1][N]
 // 数组:   [x][x][x]...[x][x][x]...[xxx]

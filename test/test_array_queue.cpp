@@ -1,16 +1,19 @@
-/** \example array_queue/sample_array_queue1.cpp
- * This is an example of how to use the ArrayQueue class.
- */
 #include <assert.h>
 #include <iostream>
+#include <gtest/gtest.h>
+
 #include "ArrayQueue.hpp"
 
 using namespace mini_algo;
 using namespace std;
 
-int main()
-{
+TEST(ArrayQueueTest, method) {
 	ArrayQueue<int, 100> queue1;
+
+	EXPECT_TRUE(queue1.isEmpty());
+	EXPECT_FALSE(queue1.isFull());
+	EXPECT_EQ(0, queue1.size());
+	EXPECT_EQ(100, queue1.capacity());
 
 	// 测试enqueue
 	for (int i = 0; i < 5; ++i)
@@ -20,6 +23,12 @@ int main()
 	cout << "queue1.capacity(): " << queue1.capacity() << endl;
 	cout << "queue1.front(): " << queue1.front() << endl;
 	cout << "queue1.back(): " << queue1.back() << endl;
+
+	EXPECT_FALSE(queue1.isEmpty());
+	EXPECT_FALSE(queue1.isFull());
+	EXPECT_EQ(5, queue1.size());
+	EXPECT_EQ(0, queue1.front());
+	EXPECT_EQ(4, queue1.back());
 
 	// 测试dequeue
 	while (!queue1.isEmpty()) {
@@ -40,7 +49,5 @@ int main()
 
 	cout << "queue1.size(): " << queue1.size() << endl;
 	cout << "queue1.capacity(): " << queue1.capacity() << endl;
-
-	return 0;
 }
 
