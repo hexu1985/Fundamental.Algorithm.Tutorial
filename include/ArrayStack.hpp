@@ -8,8 +8,8 @@
  * @see 算法I~IV(C++实现): 章节4.4
  *
  */
-#ifndef	MINI_ALGO_ARRAY_STACK_INC
-#define	MINI_ALGO_ARRAY_STACK_INC
+#ifndef MINI_ALGO_ARRAY_STACK_INC
+#define MINI_ALGO_ARRAY_STACK_INC
 
 namespace mini_algo {
 
@@ -25,8 +25,8 @@ class ArrayStack {
 //                         ^_top
 private:
     Item A[maxN];   // 数组空间, A[0], ..., A[N-1]
-	int _top;	    // 栈顶下标, 指向栈顶元素的下一个位置
-	int N;	        // 栈大小
+    int _top;       // 栈顶下标, 指向栈顶元素的下一个位置
+    int N;          // 栈大小
 
 private:
     ArrayStack(const ArrayStack &) = delete;
@@ -38,11 +38,11 @@ public:
      *
      * @param maxN 栈最多能容纳元素个数
      */
-	ArrayStack()
-	{
+    ArrayStack()
+    {
         N = maxN;
         _top = 0;
-	}
+    }
 
     /**
      * @brief 空析构函数
@@ -56,82 +56,82 @@ public:
      *
      * @return 当前栈大小
      */
-	size_t size() const
-	{
-		return _top;
-	}
+    size_t size() const
+    {
+        return _top;
+    }
 
     /**
      * @brief 获取栈最大能容纳元素个数
      *
      * @return 栈容量
      */
-	size_t capacity() const
-	{
-		return N;
-	}
+    size_t capacity() const
+    {
+        return N;
+    }
 
     /**
      * @brief 判断栈是否为空
      *
      * @return 栈为空返回true, 否则返回false
      */
-	bool isEmpty() const
-	{
-		return _top == 0;
-	}
+    bool isEmpty() const
+    {
+        return _top == 0;
+    }
 
     /**
      * @brief 判断栈是否已满
      *
      * @return 如果栈已满返回true, 否则返回false
      */
-	bool isFull() const
-	{
-		return _top == N;
-	}
+    bool isFull() const
+    {
+        return _top == N;
+    }
 
     /**
      * @brief 往栈顶放入一个元素
      *
      * @param item 被放入的元素值
      */
-	void push(const Item &item)
-	{
+    void push(const Item &item)
+    {
         A[_top++] = item;
-	}
+    }
 
     /**
      * @brief 获取并弹出栈顶的元素
      *
      * @return 栈顶首的元素值
      */
-	Item pop()
-	{
+    Item pop()
+    {
         return A[--_top];
-	}
+    }
 
     /**
      * @brief 获取栈顶元素的引用
      *
      * @return 栈顶元素值的引用
      */
-	Item &top()
-	{
+    Item &top()
+    {
         return A[_top-1];
-	}
+    }
 
     /**
      * @brief 获取栈顶元素的常引用
      *
      * @return 栈顶元素值的常引用
      */
-	const Item &top() const
-	{
+    const Item &top() const
+    {
         return A[_top-1];
-	}
+    }
 };
 
-}	// namespace mini_algo
+}    // namespace mini_algo
 
 #endif

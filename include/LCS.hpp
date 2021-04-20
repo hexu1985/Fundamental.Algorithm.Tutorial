@@ -25,43 +25,43 @@ template <typename Sequence>
 class LCS {
 private:
     enum { LEFT = '-', UP = '|', LEFT_UP = '\\' };
-	std::vector<std::vector<int>> cTbl_;
-	std::vector<std::vector<char>> bTbl_;
+    std::vector<std::vector<int>> cTbl_;
+    std::vector<std::vector<char>> bTbl_;
     const Sequence &seqX_;
     const Sequence &seqY_;
 
-	template <typename T>
-	static void initTable(std::vector<std::vector<T>> &v, int row, int col)
-	{
+    template <typename T>
+    static void initTable(std::vector<std::vector<T>> &v, int row, int col)
+    {
         v.clear();
-		v.resize(row+1);
-		for (int i = 0; i <= row; i++) {
-			v[i].resize(col+1);
-		}	
-	}
+        v.resize(row+1);
+        for (int i = 0; i <= row; i++) {
+            v[i].resize(col+1);
+        }
+    }
 
-	void calLCS()
-	{
-		int row = seqX_.size();
-		int col = seqY_.size();
-		initTable(cTbl_, row, col);
-		initTable(bTbl_, row, col);
+    void calLCS()
+    {
+        int row = seqX_.size();
+        int col = seqY_.size();
+        initTable(cTbl_, row, col);
+        initTable(bTbl_, row, col);
 
-		for (int i = 1; i <= row; ++i) {
-			for (int j = 1; j <= col; ++j) {
-				if (seqX_[i-1] == seqY_[j-1]) {
-					cTbl_[i][j] = cTbl_[i-1][j-1]+1;
-					bTbl_[i][j] = LEFT_UP;
-				} else if (cTbl_[i-1][j] >= cTbl_[i][j-1]) {
-					cTbl_[i][j] = cTbl_[i-1][j];
-					bTbl_[i][j] = UP;
-				} else {
-					cTbl_[i][j] = cTbl_[i][j-1];
-					bTbl_[i][j] = LEFT;
-				}
-			}
-		}
-	}
+        for (int i = 1; i <= row; ++i) {
+            for (int j = 1; j <= col; ++j) {
+                if (seqX_[i-1] == seqY_[j-1]) {
+                    cTbl_[i][j] = cTbl_[i-1][j-1]+1;
+                    bTbl_[i][j] = LEFT_UP;
+                } else if (cTbl_[i-1][j] >= cTbl_[i][j-1]) {
+                    cTbl_[i][j] = cTbl_[i-1][j];
+                    bTbl_[i][j] = UP;
+                } else {
+                    cTbl_[i][j] = cTbl_[i][j-1];
+                    bTbl_[i][j] = LEFT;
+                }
+            }
+        }
+    }
 
 public:
     /**
@@ -70,20 +70,20 @@ public:
      * @param x 序列1
      * @param y 序列2
      */
-	LCS(const Sequence &x, const Sequence &y): seqX_(x), seqY_(y)
-	{
-		calLCS();
-	}
+    LCS(const Sequence &x, const Sequence &y): seqX_(x), seqY_(y)
+    {
+        calLCS();
+    }
 
     /**
      * @brief 获取LCS长度
      *
      * @return LCS长度
      */
-	int length() const 
+    int length() const 
     {
-		return cTbl_[seqX_.size()][seqY_.size()];
-	}
+        return cTbl_[seqX_.size()][seqY_.size()];
+    }
 
     /**
      * @brief 获取LCS在原始序列中的子序列下标

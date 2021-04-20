@@ -26,7 +26,7 @@ public:
      *
      * @param s 初始种子值
      */
-	RandomNumber(int32_t s = 1)
+    RandomNumber(int32_t s = 1)
     {
         seed(s);
     }
@@ -62,7 +62,7 @@ public:
      *
      * @return [1, 2^31-2]区间内的随机整数
      */
-	int32_t random()
+    int32_t random()
     {
         int32_t tmpSeed = A * ( seed_ % Q ) - R * ( seed_ / Q );
 
@@ -99,7 +99,7 @@ public:
      *
      * @return [0, 1)区间内的随机实数
      */
-	double frandom()
+    double frandom()
     {
         return double(random())/double(M);
     }
@@ -131,12 +131,12 @@ public:
     }
 
 private:
-	static const int32_t A = 48271;
-	static const int32_t M = 2147483647;
-	static const int32_t Q = M / A;
-	static const int32_t R = M % A;
+    static const int32_t A = 48271;
+    static const int32_t M = 2147483647;
+    static const int32_t Q = M / A;
+    static const int32_t R = M % A;
 
-	int32_t seed_;
+    int32_t seed_;
 };
 
 }   // namespace mini_algo

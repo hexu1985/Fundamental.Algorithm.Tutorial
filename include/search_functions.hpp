@@ -65,22 +65,22 @@ int sequence_search(const std::vector<T> &arr, const T &target)
 template <typename T>
 int binary_search(const std::vector<T> &arr, int first, int last, const T &target)
 {
-	int mid;					// index of the midpoint
-	int origLast = last;		// save original value of last
-	
-	while (first < last)		// test for nonempty sublist
-	{
-		mid = (first+last)/2;
-		if (target == arr[mid])
-			return mid;			// have a match
-		// determine which sublist to search
-		else if (target < arr[mid])
-			last = mid;			// search lower sublist. reset last
-		else
-			first = mid+1;		// search upper sublist. reset first
-	}
+    int mid;                    // index of the midpoint
+    int origLast = last;        // save original value of last
+    
+    while (first < last)        // test for nonempty sublist
+    {
+        mid = (first+last)/2;
+        if (target == arr[mid])
+            return mid;            // have a match
+        // determine which sublist to search
+        else if (target < arr[mid])
+            last = mid;            // search lower sublist. reset last
+        else
+            first = mid+1;        // search upper sublist. reset first
+    }
 
-	return origLast;			// target not found
+    return origLast;            // target not found
 }
 
 /**
@@ -117,19 +117,19 @@ int binary_search(const std::vector<T> &arr, const T &target)
 template <typename T>
 int lower_bound(const std::vector<T> &arr, int first, int last, const T &target)
 {
-	int mid;					// index of the midpoint
-	
-	while (first < last)		// test for nonempty sublist
-	{
-		mid = (first+last)/2;
-		// determine which sublist to search
-		if (target <= arr[mid])
-			last = mid;			// search lower sublist. reset last
-		else
-			first = mid+1;		// search upper sublist. reset first
-	}
+    int mid;                    // index of the midpoint
+    
+    while (first < last)        // test for nonempty sublist
+    {
+        mid = (first+last)/2;
+        // determine which sublist to search
+        if (target <= arr[mid])
+            last = mid;            // search lower sublist. reset last
+        else
+            first = mid+1;        // search upper sublist. reset first
+    }
 
-	return first;
+    return first;
 }
 
 /**
@@ -165,19 +165,19 @@ int lower_bound(const std::vector<T> &arr, const T &target)
 template <typename T>
 int upper_bound(const std::vector<T> &arr, int first, int last, const T &target)
 {
-	int mid;					// index of the midpoint
-	
-	while (first < last)		// test for nonempty sublist
-	{
-		mid = (first+last)/2;
-		// determine which sublist to search
-		if (target < arr[mid])
-			last = mid;			// search lower sublist. reset last
-		else
-			first = mid+1;		// search upper sublist. reset first
-	}
+    int mid;                    // index of the midpoint
+    
+    while (first < last)        // test for nonempty sublist
+    {
+        mid = (first+last)/2;
+        // determine which sublist to search
+        if (target < arr[mid])
+            last = mid;            // search lower sublist. reset last
+        else
+            first = mid+1;        // search upper sublist. reset first
+    }
 
-	return first;
+    return first;
 }
 
 /**
@@ -197,7 +197,7 @@ int upper_bound(const std::vector<T> &arr, const T &target)
     return upper_bound(arr, 0, arr.size(), target);
 }
 
-}	// namespace mini_algo
+}   // namespace mini_algo
 
 #endif
 

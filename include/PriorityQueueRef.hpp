@@ -35,7 +35,7 @@ template <class T, typename Compare = std::less<T>>
 class PriorityQueueRef { 
 private:
     std::vector<int> pqList_;                   // 优先级队列, 存放的元素是keyList_中元素的索引
-	Compare comp_;                              // 比较使用的函数对象
+    Compare comp_;                              // 比较使用的函数对象
     std::unordered_map<int, int> key2pqMap_;    // 从keyList_中元素索引, 转换成pqList_中元素索引
     const std::vector<T> &keyList_;             // 存放用于实际计算优先级的key列表(这里是引用, 实际队列有构造函数传入)
 
@@ -61,8 +61,8 @@ private:
                 currentPos = parentPos;
                 parentPos = (currentPos-1)/2;
             } else {
-				break;
-			}
+                break;
+            }
         }
     }
 
@@ -79,8 +79,8 @@ private:
                 currentPos = childPos;
                 childPos = 2*currentPos+1;
             } else {
-				break;
-			}
+                break;
+            }
         }
     }
 
@@ -166,6 +166,6 @@ public:
     }
 };
 
-}	// namespace mini_algo
+}   // namespace mini_algo
 
 #endif

@@ -36,34 +36,34 @@ void push_heap(std::vector<T> &v, int last, Compare comp=Compare())
 {
     // 假设新项的位置为v[last-1], 而且, v[0]到v[last2]的元素以
     // 堆的顺序排列
-	int currentPos, parentPos;
-	T target;
+    int currentPos, parentPos;
+    T target;
 
-	// currentPos是用于遍历父节点路径的索引.
+    // currentPos是用于遍历父节点路径的索引.
     // target是v[last-1]值, 需要在路径中重新定位
-	currentPos = last-1;
-	parentPos = (currentPos-1)/2;
-	target = v[last-1];
+    currentPos = last-1;
+    parentPos = (currentPos-1)/2;
+    target = v[last-1];
 
-	// 遍历父结点的路径, 直到根
-	while (currentPos != 0)
-	{
-		// 比较target和父结点值
-		if (comp(v[parentPos], target))
-		{
+    // 遍历父结点的路径, 直到根
+    while (currentPos != 0)
+    {
+        // 比较target和父结点值
+        if (comp(v[parentPos], target))
+        {
             // 将数据从父结点位置移动到当前位置.
             // 将表示当前位置的索引更新为父结点位置,
             // 计算下一个父结点位置
-			v[currentPos] = v[parentPos];
-			currentPos = parentPos;
-			parentPos = (currentPos-1)/2;
-		}
-		else
-			// 如果!comp(parentvalue, target), 则满足堆条件
-			break;
-	}
-	// 正确位置已被发现, 将其赋值为target
-	v[currentPos] = target;
+            v[currentPos] = v[parentPos];
+            currentPos = parentPos;
+            parentPos = (currentPos-1)/2;
+        }
+        else
+            // 如果!comp(parentvalue, target), 则满足堆条件
+            break;
+    }
+    // 正确位置已被发现, 将其赋值为target
+    v[currentPos] = target;
 }
 
 /**
@@ -82,40 +82,40 @@ void push_heap(std::vector<T> &v, int last, Compare comp=Compare())
 template <typename T, typename Compare=std::less<T>>
 void adjust_heap(std::vector<T> &v, int first, int last, Compare comp=Compare())
 {
-	int currentPos, childPos;
-	T target;
+    int currentPos, childPos;
+    T target;
 
     // target是v[first]值, 需要在路径中重新定位
-	currentPos = first;
-	target = v[first];
+    currentPos = first;
+    target = v[first];
 
-	// 计算左子结点的索引, 开始向下扫描子结点的路径, 在表尾(last)终止,
-	// 或者, 在找到target的位置时终止
-	childPos = 2 * currentPos + 1;
-	while (childPos <= last-1)
-	{
+    // 计算左子结点的索引, 开始向下扫描子结点的路径, 在表尾(last)终止,
+    // 或者, 在找到target的位置时终止
+    childPos = 2 * currentPos + 1;
+    while (childPos <= last-1)
+    {
         // 右子结点的索引为childPos+1. 比较两个子结点,
         // 如果comp(v[childPos], v[childPos+1])为真, 则改变childPos
-		if ((childPos+1 <= last-1) &&
+        if ((childPos+1 <= last-1) &&
             comp(v[childPos], v[childPos+1]))
-			childPos = childPos + 1;
+            childPos = childPos + 1;
 
-		// 将所选子结点与target进行比较
-		if (comp(target, v[childPos]))
-		{
+        // 将所选子结点与target进行比较
+        if (comp(target, v[childPos]))
+        {
             // comp(target, selected child)为真, 将所选子结点移到父结点;
             // 现在, 所选子结点的位置空出
-			v[currentPos] = v[childPos];
+            v[currentPos] = v[childPos];
 
-			// 更新索引, 以便继续扫描
-			currentPos = childPos;
-			childPos = 2 * currentPos + 1;
-		}
-		else
-			// target属于currentPos指定的位置.
-			break;
-	}
-	v[currentPos] = target;
+            // 更新索引, 以便继续扫描
+            currentPos = childPos;
+            childPos = 2 * currentPos + 1;
+        }
+        else
+            // target属于currentPos指定的位置.
+            break;
+    }
+    v[currentPos] = target;
 }
 
 /**
@@ -131,15 +131,15 @@ void adjust_heap(std::vector<T> &v, int first, int last, Compare comp=Compare())
 template <typename T, typename Compare=std::less<T>>
 void pop_heap(std::vector<T> &v, int last, Compare comp=Compare())
 {
-	T temp;
+    T temp;
 
-	// 交换堆中的第1个元素和最后一个元素
-	temp = v[0];
-	v[0] = v[last-1];
-	v[last-1] = temp;
+    // 交换堆中的第1个元素和最后一个元素
+    temp = v[0];
+    v[0] = v[last-1];
+    v[last-1] = temp;
 
-	// 在[0, last-1)范围中下移根结点
-	adjust_heap(v, 0, last-1, comp);
+    // 在[0, last-1)范围中下移根结点
+    adjust_heap(v, 0, last-1, comp);
 }
 
 /**
@@ -153,18 +153,18 @@ void pop_heap(std::vector<T> &v, int last, Compare comp=Compare())
 template <typename T, typename Compare=std::less<T>>
 void make_heap(std::vector<T> &v, Compare comp=Compare())
 {
-	int heapPos, lastPos;
+    int heapPos, lastPos;
 
     // 从0开始, 并恢复堆的顺序
-	lastPos = v.size();
-	heapPos = (lastPos - 2)/2;
+    lastPos = v.size();
+    heapPos = (lastPos - 2)/2;
 
     // 从最下层的非叶子结点开始堆化, 一直处理到根结点
-	while (heapPos >= 0)
-	{
-		adjust_heap(v, heapPos, lastPos, comp);
-		heapPos--;
-	}
+    while (heapPos >= 0)
+    {
+        adjust_heap(v, heapPos, lastPos, comp);
+        heapPos--;
+    }
 }
 
 /**
@@ -205,4 +205,4 @@ void heap_sort(std::vector<T> &v, Compare comp = Compare())
 
 }   // namespace mini_algo
 
-#endif	// HEAP_FUNCTIONS
+#endif    // HEAP_FUNCTIONS

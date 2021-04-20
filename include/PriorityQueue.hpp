@@ -35,47 +35,47 @@ public:
     /**
      * @brief 创建空的优先级队列
      */
-	PriorityQueue();
+    PriorityQueue();
  
     /**
      * @brief 返回优先级队列中的元素数目
      *
      * @return 元素个数
      */
-	int size() const;
+    int size() const;
 
     /**
      * @brief 判断优先级队列是否为空?
      *
      * @return 如果为空, 返回true, 否则返回false
      */
-	bool isEmpty() const;
+    bool isEmpty() const;
 
     /**
      * @brief 将item插入到优先级队列中
      *
      * @param item 被插入的元素
      */
-	void push(const T &item);
+    void push(const T &item);
 
     /**
      * @brief 删除具有最高优先级的元素
      *
      * @warning 如果优先级队列为空, 会抛出std::underflow_error
      */
-	void pop();
+    void pop();
 
     /**
      * @brief 返回具有最高优先级的元素
      *
      * @warning 如果优先级队列为空, 会抛出std::underflow_error
      */
-	T &top();
-	const T &top() const;
+    T &top();
+    const T &top() const;
 
 private:
-	std::vector<T> pqList_; // pqList容纳优先级队列元素
-	Compare comp_;          // 比较使用的函数对象
+    std::vector<T> pqList_; // pqList容纳优先级队列元素
+    Compare comp_;          // 比较使用的函数对象
 };
 
 
@@ -99,38 +99,38 @@ bool PriorityQueue<T,Compare>::isEmpty() const
 template <typename T, typename Compare>
 void PriorityQueue<T,Compare>::push(const T &item)
 {
-	pqList_.push_back(item);
-	push_heap(pqList_, pqList_.size(), comp_);
+    pqList_.push_back(item);
+    push_heap(pqList_, pqList_.size(), comp_);
 }
 
 template <typename T, typename Compare>
 void PriorityQueue<T,Compare>::pop()
 {
-	if (pqList_.empty())
-		throw std::underflow_error("PriorityQueue pop(): empty list");
+    if (pqList_.empty())
+        throw std::underflow_error("PriorityQueue pop(): empty list");
 
-	pop_heap(pqList_, pqList_.size(), comp_);
-	pqList_.pop_back();
+    pop_heap(pqList_, pqList_.size(), comp_);
+    pqList_.pop_back();
 }
 
 template <typename T, typename Compare>
 T &PriorityQueue<T,Compare>::top()
 {
    if (pqList_.empty())
-		throw std::underflow_error("PriorityQueue top(): empty list");
+        throw std::underflow_error("PriorityQueue top(): empty list");
 
-	return pqList_[0];
+    return pqList_[0];
 }
 
 template <typename T, typename Compare>
 const T &PriorityQueue<T,Compare>::top() const
 {
    if (pqList_.empty())
-		throw std::underflow_error("PriorityQueue top(): empty list");
+        throw std::underflow_error("PriorityQueue top(): empty list");
 
-	return pqList_[0];
+    return pqList_[0];
 }
 
 }   // namespace mini_algo
 
-#endif	// PRIORITY_QUEUE
+#endif  // PRIORITY_QUEUE
