@@ -6,7 +6,7 @@
 
 using namespace std;
 
-TEST(ArrayQueueTest, method) {
+TEST(ArrayQueueTest, Methods) {
 	ArrayQueue<int, 100> queue1;
 
 	EXPECT_TRUE(queue1.isEmpty());

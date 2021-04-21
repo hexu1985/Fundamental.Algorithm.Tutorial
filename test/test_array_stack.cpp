@@ -7,14 +7,13 @@
 using namespace mini_algo;
 using namespace std;
 
-int main()
-{
+TEST(ArrayStackTest, Methods) {
 	ArrayStack<int, 100> stack1;
 
-	assert(stack1.isEmpty());
-	assert(!stack1.isFull());
-	assert(stack1.size() == 0);
-	assert(stack1.capacity() == 100);
+	EXPECT_TRUE(stack1.isEmpty());
+	EXPECT_FALSE(stack1.isFull());
+	EXPECT_EQ(0, stack1.size());
+	EXPECT_EQ(100, stack1.capacity());
 
 	// 测试push
 	for (int i = 0; i < 5; ++i)
@@ -24,10 +23,10 @@ int main()
 	cout << "stack1.capacity(): " << stack1.capacity() << endl;
 	cout << "stack1.top(): " << stack1.top() << endl;
 
-	assert(!stack1.isEmpty());
-	assert(!stack1.isFull());
-	assert(stack1.size() == 5);
-	assert(stack1.top() == 4);
+	EXPECT_FALSE(stack1.isEmpty());
+	EXPECT_FALSE(stack1.isFull());
+	EXPECT_EQ(5, stack1.size());
+	EXPECT_EQ(4, stack1.top());
 
 	// 测试pop
 	while (!stack1.isEmpty()) {
@@ -48,6 +47,4 @@ int main()
 
 	cout << "stack1.size(): " << stack1.size() << endl;
 	cout << "stack1.capacity(): " << stack1.capacity() << endl;
-
-	return 0;
 }
