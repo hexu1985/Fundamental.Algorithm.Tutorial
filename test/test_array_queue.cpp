@@ -4,7 +4,6 @@
 
 #include "ArrayQueue.hpp"
 
-using namespace mini_algo;
 using namespace std;
 
 TEST(ArrayQueueTest, method) {

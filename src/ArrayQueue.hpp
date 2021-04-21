@@ -8,10 +8,8 @@
  * @see 算法I~IV(C++实现): 章节4.6
  *
  */
-#ifndef MINI_ALGO_ARRAY_QUEUE_INC
-#define MINI_ALGO_ARRAY_QUEUE_INC
-
-namespace mini_algo {
+#ifndef ARRAY_QUEUE_INC
+#define ARRAY_QUEUE_INC
 
 /**
  * @brief 数组实现的队列
@@ -165,7 +163,5 @@ public:
         return A[(tail-1+N)%N];     // tail == 0 ? A[N-1] : A[tail-1];
     }
 };
-
-}   // namespace mini_algo
 
 #endif

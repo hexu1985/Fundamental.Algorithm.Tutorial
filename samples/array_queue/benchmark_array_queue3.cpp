@@ -1,13 +1,10 @@
-/** \example array_queue/sample_array_queue3.cpp
- * This is an example of how to use the ArrayQueue class.
- */
-// ArrayQueue::push/pop
+// queue::push/pop
 #include <iostream>         // std::cin, std::cout
-#include "ArrayQueue.hpp"   // ArrayQueue
+#include <queue>            // std::queue
 
 int main ()
 {
-  ArrayQueue<int, 10> myqueue;
+  std::queue<int> myqueue;
   int myint;
 
   std::cout << "Please enter some integers (enter 0 to end):\n";
@@ -15,10 +12,10 @@ int main ()
   do {
     std::cin >> myint;
     myqueue.push (myint);
-  } while (myint && !myqueue.isFull());
+  } while (myint);
 
   std::cout << "myqueue contains: ";
-  while (!myqueue.isEmpty())
+  while (!myqueue.empty())
   {
     std::cout << ' ' << myqueue.front();
     myqueue.pop();

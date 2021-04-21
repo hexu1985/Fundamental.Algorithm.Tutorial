@@ -5,8 +5,6 @@
 #include <iostream>         // std::cout
 #include "ArrayQueue.hpp"   // ArrayQueue
 
-using namespace mini_algo;
-
 int main ()
 {
   ArrayQueue<int, 100> myqueue;
