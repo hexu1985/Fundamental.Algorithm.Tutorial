@@ -18,7 +18,7 @@ else()
     set(LIBS_SYSTEM pthread)
 endif()
 
-include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include")
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/src")
 
 add_subdirectory(samples)
 
