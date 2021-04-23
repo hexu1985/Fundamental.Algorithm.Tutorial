@@ -1,15 +1,15 @@
 // stack::empty
 #include <iostream>     // std::cout
-#include "ArrayStack.hpp"    // stack
+#include <stack>        // stack
 
 int main ()
 {
-  ArrayStack<int> mystack;
+  std::stack<int> mystack;
   int sum (0);
 
   for (int i=1;i<=10;i++) mystack.push(i);
 
-  while (!mystack.isEmpty())
+  while (!mystack.empty())
   {
      sum += mystack.top();
      mystack.pop();

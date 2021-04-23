@@ -8,10 +8,8 @@
  * @see 算法I~IV(C++实现): 章节4.4
  *
  */
-#ifndef MINI_ALGO_ARRAY_STACK_INC
-#define MINI_ALGO_ARRAY_STACK_INC
-
-namespace mini_algo {
+#ifndef ARRAY_STACK_INC
+#define ARRAY_STACK_INC
 
 /**
  * @brief 数组实现的栈
@@ -131,7 +129,5 @@ public:
         return A[_top-1];
     }
 };
-
-}    // namespace mini_algo
 
 #endif
