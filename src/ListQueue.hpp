@@ -16,6 +16,26 @@
 template <class Item>
 class ListQueue {
 private:
+    /**
+     * 双向循环链表节点
+     *            ___  next      
+     *           |   |------>
+     *     <-----|___|       
+     *       prev
+     */
+    struct Node {
+        Node(): prev(nullptr), next(nullptr), item() {} 
+        Node(const Item &item_): prev(nullptr), next(nullptr), item(item_) {}
+
+        Node *prev;
+        Node *next;
+        Item item;
+    };
+
+private:
+    Node *nil;
+
+private:
     ListQueue(const ListQueue &) = delete;
     ListQueue &operator =(const ListQueue &) = delete;
 
@@ -25,6 +45,17 @@ public:
      */
     ListQueue()
     { 
+        /**
+         * 初始化NIL节点
+         *         ____
+         *        |    |
+         *        V    |
+         *   .--[nil]--'
+         *   |    A    
+         *   |____|     
+         */
+        nil = new Node();
+        nil->prev = nil->next = nil;
     }
 
     /**
@@ -32,6 +63,13 @@ public:
      */
     ~ListQueue()
     {
+        Node *node = nil->next;
+        while (node != nil) {
+            Node *next = node->next;
+            delete node;
+            node = next;
+        }
+        delete nil;
     }
 
     /**
@@ -41,6 +79,13 @@ public:
      */
     int size() const
     {
+        Node *node = nil->next;
+        int n = 0;
+        while (node != nil) {
+            node = node->next;
+            ++n;
+        }
+        return n;
     }
 
     /**
@@ -50,6 +95,7 @@ public:
      */
     bool isEmpty() const
     { 
+        return nil->next == nil;
     }
 
     /**
@@ -58,7 +104,41 @@ public:
      * @param item 被放入的元素值
      */
     void push(const Item &item)
-    { 
+    {
+        /**
+         * 在链表的nil节点前插入node节点
+         *            ___                ___
+         *           |   |------------->|   |------>
+         *    <------|___|<-------------|___|
+         *                                ^-nil
+         *                  ___        
+         *                 |   |------>
+         *            <----|___|       
+         *                   ^-node
+         * =========================================
+         *            ___                ___
+         *           |   |------------->|   |------>
+         *    <------|___|<-------------|___|
+         *             A                 A ^-nil
+         *             |(1) ___          |(2)
+         *             |   |   |---------'
+         *             '---|___|       
+         *                   ^-node
+         * =========================================
+         *            ___                ___
+         *           |   |--.     .---->|   |------>
+         *    <------|___|  |(3)  |  .--|___|
+         *             A    |  (4)|  |    ^-nil
+         *             |    V__   |  |
+         *             |   |   |--'  |
+         *             '---|___|<----'
+         *                   ^-node
+         */
+        Node *node = new Node(item);
+        node->prev = nil->prev;
+        node->next = nil;
+        nil->prev->next = node;
+        nil->prev = node;
     }
 
     /**
@@ -67,7 +147,33 @@ public:
      * @return 队列首的元素值
      */
     Item pop()
-    { 
+    {
+        if (isEmpty()) {
+            return nil->item;
+        }
+
+        /**
+         * 从链表上删除nil->next节点
+         *            ___           ___           ___ 
+         *           |   |-------->|   |-------->|   |------>
+         *    <------|___|<--------|___|<--------|___|
+         *             ^-nil         ^-node
+         * ==================================================
+         *                    .--------------------.
+         *                    |(1)                 |
+         *            ___     |     ___           _V_ 
+         *           |   |----'    |   |-------->|   |------>
+         *    <------|___|<--------|___|    .----|___|
+         *             A^-nil        ^-node |   
+         *             |                    |(2)
+         *             '--------------------'
+         */
+        Node *node = nil->next;
+        Item item = node->item;
+        node->prev->next = node->next;
+        node->next->prev = node->prev;
+        delete node;
+        return item;
     }
 
     /**
@@ -77,6 +183,7 @@ public:
      */
     void pop(Item &item)
     {
+        item = pop();
     }
 
     /**
@@ -86,6 +193,7 @@ public:
      */
     Item &front()
     {
+        return nil->next->item;
     }
 
     /**
@@ -95,6 +203,7 @@ public:
      */
     const Item &front() const
     {
+        return nil->next->item;
     }
 
     /**
@@ -104,6 +213,7 @@ public:
      */
     Item &back()
     {
+        return nil->prev->item;
     }
 
     /**
@@ -113,6 +223,7 @@ public:
      */
     const Item &back() const
     {
+        return nil->prev->item;
     }
 };
 

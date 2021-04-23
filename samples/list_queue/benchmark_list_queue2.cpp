@@ -1,4 +1,4 @@
-// queue::empty
+// std::queue::empty
 #include <iostream>         // std::cout
 #include <queue>            // std::queue
 
