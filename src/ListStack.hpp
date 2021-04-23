@@ -14,24 +14,57 @@
  * @tparam Item 栈元素类型
  */
 template <typename Item>
-class Stack {
+class ListStack {
 private:
-    Stack(const Stack &) = delete;
-    Stack &operator =(const Stack &) = delete;
+    /**
+     * 单向链表节点
+     *    ___     
+     *   |   |------>
+     *   |___| next  
+     * 
+     */
+    struct Node {
+        Node(): next(nullptr), item() {}
+        Node(const Item &item_): next(nullptr), item(item_) {}
+
+        Node *next;
+        Item item;
+    };
+
+    Node *head;
+
+private:
+    ListStack(const ListStack &) = delete;
+    ListStack &operator =(const ListStack &) = delete;
 
 public:
     /**
      * @brief 构造一个空栈
      */
-    Stack()
+    ListStack()
     {
+        /**
+         * 初始化head节点
+         * 
+         * [head] --> nullptr
+         *
+         */
+        head = new Node();
+        head->next = nullptr;
     }
 
     /**
      * @brief 释放动态内存
      */
-    ~Stack()
+    ~ListStack()
     {
+        Node *node = head->next;
+        while (node != nullptr) {
+            Node *next = node->next;
+            delete node;
+            node = next;
+        }
+        delete head;
     }
 
     /**
@@ -41,6 +74,13 @@ public:
      */
     size_t size() const
     {
+        Node *node = head->next;
+        int n = 0;
+        while (node != nullptr) {
+            node = node->next;
+            ++n;
+        }
+        return n;
     }
 
     /**
@@ -50,6 +90,7 @@ public:
      */
     bool isEmpty() const
     {
+        return head->next == nullptr;
     }
 
     /**
@@ -59,6 +100,38 @@ public:
      */
     void push(const Item &item)
     {
+        /**
+         * 在链表的head结点后插入node结点
+         *     ___                   ___
+         *    |   |---------------->|   |------>
+         *    |___|                 |___|
+         *      ^-head
+         *                 ___        
+         *                |   |------>
+         *                |___|       
+         *                  ^-node
+         * =========================================
+         *     ___                   ___
+         *    |   |---------------->|   |------>
+         *    |___|             .-->|___|
+         *      ^-head          |
+         *                 ___  |(1) 
+         *                |   |-'
+         *                |___|       
+         *                  ^-node       
+         * =========================================
+         *     ___                   ___
+         *    |   |----.        .-->|   |------>
+         *    |___|    |(2)     |   |___|
+         *      ^-head |        |
+         *             |   ___  |      
+         *             '->|   |-'
+         *                |___|       
+         *                  ^-node       
+         */
+        Node *node = new Node(item);
+        node->next = head->next;
+        head->next = node;
     }
 
     /**
@@ -68,6 +141,28 @@ public:
      */
     Item pop()
     {
+        if (isEmpty()) {
+            return head->item;
+        }
+        /**
+         * 从链表上删除head结点后面的结点
+         *     ___           ___           ___ 
+         *    |   |-------->|   |-------->|   |------>
+         *    |___|         |___|         |___|
+         *      ^-head        ^-node
+         * ==================================================
+         *              ____________________
+         *             |                    |
+         *     ___     |(1)  ___           _V_ 
+         *    |   |----'    |   |-------->|   |------>
+         *    |___|         |___|         |___|
+         *      ^-head        ^-node
+         */
+        Node *node = head->next;
+        Item item = node->item;
+        head->next = node->next;
+        delete node;
+        return item;
     }
 
     /**
@@ -77,6 +172,11 @@ public:
      */
     Item &top()
     {
+        if (isEmpty()) {
+            return head->item;
+        }
+
+        return head->next->item;
     }
 
     /**
@@ -86,9 +186,12 @@ public:
      */
     const Item &top() const
     {
+        if (isEmpty()) {
+            return head->item;
+        }
+
+        return head->next->item;
     }
 };
-
-}   // namespace mini_algo
 
 #endif
