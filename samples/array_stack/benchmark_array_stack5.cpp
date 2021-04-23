@@ -1,10 +1,10 @@
 // stack::top
 #include <iostream>     // std::cout
-#include "ArrayStack.hpp"    // stack
+#include <stack>        // stack
 
 int main ()
 {
-  ArrayStack<int> mystack;
+  std::stack<int> mystack;
 
   mystack.push(10);
   mystack.push(20);

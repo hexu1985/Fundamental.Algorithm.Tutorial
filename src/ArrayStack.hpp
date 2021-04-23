@@ -16,7 +16,7 @@
  *
  * @tparam Item 栈元素类型
  */
-template <typename Item, size_t maxN=128>
+template <typename Item, size_t maxN>
 class ArrayStack {
 // 索引:   [0][1][2]...[7][8][9]...[N-1][N]
 // 数组:   [x][x][x]...[x][x][x]...[xxx]

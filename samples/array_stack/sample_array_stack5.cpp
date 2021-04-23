@@ -4,7 +4,7 @@
 
 int main ()
 {
-  ArrayStack<int> mystack;
+  ArrayStack<int,100> mystack;
 
   mystack.push(10);
   mystack.push(20);

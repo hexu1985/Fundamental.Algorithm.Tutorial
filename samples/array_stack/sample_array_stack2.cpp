@@ -4,7 +4,7 @@
 
 int main ()
 {
-  ArrayStack<int> mystack;
+  ArrayStack<int,100> mystack;
   int sum (0);
 
   for (int i=1;i<=10;i++) mystack.push(i);

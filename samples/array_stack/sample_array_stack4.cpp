@@ -4,7 +4,7 @@
 
 int main ()
 {
-  ArrayStack<int> myints;
+  ArrayStack<int,100> myints;
   std::cout << "0. size: " << myints.size() << '\n';
 
   for (int i=0; i<5; i++) myints.push(i);
